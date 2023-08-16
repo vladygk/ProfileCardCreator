@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <title>Profile card creator</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <!-- Navigation -->
+
+
+        <nav>
+            {% if profile %}
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a >Dashboard</a>
+                <a>
+                    Add Fruit</a>
+                <a >Profile</a>
+            </div>
+            {% else %}
+            <!-- If user profile has NOT been created -->
+            <div class="guest">
+
+                <a >Create Profile</a>
+
+            </div>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+      {% block main %}
+        {% endblock %}
+
+      </main>
+    </div>
+<!-- footer -->
+    <footer>
+      <p>@ProfileCardCreator 2023. All rights reserved.</p>
+    </footer>
+
+
+
+  </body>
+</html>
