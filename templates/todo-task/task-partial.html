@@ -31,8 +31,8 @@
                 {% for item in task.item_set.all %}
                     <div>
                         <a href="{% url 'details item' pk=item.pk %}"
-                           style="width: 4vw"
-                           class="btn btn-success text-primary btn-xxl d-block mx-auto"> {{ item.Name }}</a>
+
+                           class="btn btn-success text-primary btn-xxl d-block me-2"> {{ item.Name }}</a>
                     </div>
                 {% endfor %}
             </div>

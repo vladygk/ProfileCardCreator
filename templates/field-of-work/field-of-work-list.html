@@ -11,8 +11,8 @@
         {% if fields %}
             {% for field in fields %}
                 <div class="border border-2 border-info m-5 rounded-5 d-flex flex-column justify-content-center align-items-center p-3" style="width: 20vw">
-                    <h4 class="text-center">Field of Work:> {{ field.Name }}</h4>
-                    <h4 class="text-center text-success">Category:{{ field.Category.Name }}</h4>
+                    <h4 class="text-center">Field of Work: {{ field.Name }}</h4>
+                    <h4 class="text-center text-success">Category: {{ field.Category.Name }}</h4>
                     {% if request.user|user_belongs_to_group:'Admin_group' %}
                         <a class="btn btn-danger btn-xxl d-block "
                            style="width: 6vw"

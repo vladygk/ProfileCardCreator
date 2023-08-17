@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class TodoTask(models.Model):
     Title = models.CharField(null=False, max_length=30,
                              validators=[MaxLengthValidator(30), MinLengthValidator(2),
-                                         RegexValidator(r'^[A-Za-z]+$',
+                                         RegexValidator(r'^[A-Za-z ]+$',
                                                         message="Todo task name should contain only letters!")])
     Description = models.CharField(null=False, max_length=30,
                                    validators=[MaxLengthValidator(30), MinLengthValidator(2), ])

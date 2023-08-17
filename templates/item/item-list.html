@@ -7,7 +7,7 @@
      {% if request.user|user_belongs_to_group:'Stuff_group' %}
     <a class="btn btn-warning btn-xxl d-block mx-auto mt-1" href="{% url 'create item' %}">Create new Item</a>
 {% endif %}
-    <div class="d-flex flex-row align-items-start justify-content-evenly flex-wrap mt-4" style="height: 70vh">
+    <div class="d-flex flex-row align-items-start justify-content-evenly flex-wrap mt-4  overflow-auto item-container" style="height: 70vh">
         {% if items %}
             {% for item in items %}
                 {% include 'item/item-partial.html' %}

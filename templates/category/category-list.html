@@ -11,8 +11,8 @@
     <div class="d-flex flex-row align-items-start justify-content-evenly flex-wrap" style="height: 70vh">
         {% if categories %}
             {% for category in categories %}
-                <div class="border border-2 border-secondary m-5 rounded-5 " style="width: 10vw">
-                    <h1 class="text-center">{{ category.Name }}</h1>
+                <div class="border d-flex flex-column justify-content-center align-items-center border-2 border-secondary m-5 rounded-5 p-3" style="width: 10vw">
+                    <h1 class="text-center ">{{ category.Name }}</h1>
                      {% if request.user|user_belongs_to_group:'Admin_group' %}
                     <a class="btn btn-danger btn-xxl d-block mx-auto mb-4 "
                        style="width: 6vw"

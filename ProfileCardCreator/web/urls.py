@@ -43,6 +43,8 @@ urlpatterns = [
 
     path('add-group/', AddUserToGroupView.as_view(), name='add group'),
     path('remove-group/', RemoveUserToGroupView.as_view(), name='remove group'),
+
+
 ]
 
 

@@ -9,11 +9,11 @@
     <div class="d-flex flex-column align-items-start ps-5 justify-content-evenly flex-wrap" style="height: 70vh">
         {% if subtasks %}
             {% for subtask in subtasks %}
-                <div>
+                <div class="d-flex flex-column align-items-start">
                     <strong>Subtask Title:</strong> {{ subtask.Title }}<br>
                     <strong>Todo Task:</strong> {{ subtask.TodoTask.Title }}
                      {% if request.user|user_belongs_to_group:'Admin_group' %}
-                <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete subtask' pk=subtask.pk %}">Delete</a>
+                <a class="btn btn-danger btn-xxl d-block mx-auto" style="width: 10vw" href="{% url 'delete subtask' pk=subtask.pk %}">Delete</a>
                 {% endif %}
                 </div>
             {% endfor %}
