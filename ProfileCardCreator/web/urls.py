@@ -6,8 +6,9 @@ from ProfileCardCreator.web.views import IndexView, RegisterView, LoginView \
     , FieldOfWorkCreateView, FieldOfWorkListView \
     , SubtaskCreateView, SubtaskListView \
     , ItemCreateView, ItemListView, ItemDetailView, CategoryDeleteView \
-    , FieldOfWorkDeleteView, ItemDeleteView, SubtaskDeleteView\
-    , TaskDeleteView, TaskMarkAsDoneView, TodoTaskUpdateView
+    , FieldOfWorkDeleteView, ItemDeleteView, SubtaskDeleteView \
+    , TaskDeleteView, TaskMarkAsDoneView, TodoTaskUpdateView, Custom403View\
+    , Custom404View, AddUserToGroupView, RemoveUserToGroupView
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
@@ -37,4 +38,13 @@ urlpatterns = [
     path("items/", ItemListView.as_view(), name="all items"),
     path("create-item/", ItemCreateView.as_view(), name="create item"),
     path("items/<int:pk>/delete/", ItemDeleteView.as_view(), name="delete item"),
+
+    path('error/', Custom403View.as_view(), name='custom 403 error'),
+
+    path('add-group/', AddUserToGroupView.as_view(), name='add group'),
+    path('remove-group/', RemoveUserToGroupView.as_view(), name='remove group'),
 ]
+
+
+handler404 = Custom404View.as_view()
+

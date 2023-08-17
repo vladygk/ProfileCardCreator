@@ -5,48 +5,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo app</title>
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <header>
-<nav class="navbar navbar-expand-sm bg-primary text-danger ">
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" href="{% url 'index' %}">Home</a>
-    </li>
-      {% if not request.user.is_authenticated %}
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'login' %}">Login</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'register' %}">Register</a>
-    </li>
-      {% else %}
-          <li class="nav-item">
-      <a class="nav-link" href="{% url 'all tasks' %}">All Tasks</a>
-    </li>
-           <li class="nav-item">
-      <a class="nav-link" href="{% url 'all categories' %}">All Categories</a>
-    </li>
-               <li class="nav-item">
-      <a class="nav-link" href="{% url 'all fields' %}">All Fields of work</a>
-    </li>
-      <li class="nav-item">
-      <a class="nav-link" href="{% url 'all subtasks' %}">All Subtasks</a>
-    </li>
-          <li class="nav-item">
-      <a class="nav-link" href="{% url 'all items' %}">All Items</a>
-    </li>
-
-            <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-    </li>
-      <li class="nav-item text-danger position-absolute end-0 me-5 ">
-         Welcome {{ request.user }}
-      </li>
-      {% endif %}
-  </ul>
-</nav>
+    <nav class="navbar navbar-expand-sm  bg-primary ">
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+                <a class="nav-link btn bg-primary mx-2 text-success" href="{% url 'index' %}">Home</a>
+            </li>
+            {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'register' %}">Register</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'all tasks' %}">All Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'all categories' %}">All
+                        Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'all fields' %}">All Fields of
+                        work</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'all subtasks' %}">All
+                        Subtasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'all items' %}">All Items</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'add group' %}">Add to Group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'remove group' %}">Remove from Group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn bg-secondary mx-2 text-success" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class=" text-primary position-absolute end-0 me-5 ">
+                    <h2> Welcome, {{ request.user }} </h2>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </header>
 <body class="d-flex flex-column min-vh-100">
 {% block main %}

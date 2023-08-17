@@ -25,19 +25,22 @@ SECRET_KEY = 'django-insecure-vu2y9rkh7@p0a4fa@5kyr3$(!py=yshud658wo(^3ndj7&gk$o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ProfileCardCreator.web'
+    'ProfileCardCreator.web',
+
 ]
 
 MIDDLEWARE = [
@@ -92,16 +95,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    #     'NAME': 'django.contrib.authentication.password_validation.UserAttributeSimilarityValidator',
     # },
     # {
-    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    #     'NAME': 'django.contrib.authentication.password_validation.MinimumLengthValidator',
     # },
     # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    #     'NAME': 'django.contrib.authentication.password_validation.CommonPasswordValidator',
     # },
     # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    #     'NAME': 'django.contrib.authentication.password_validation.NumericPasswordValidator',
     # },
 ]
 
@@ -134,3 +137,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 TESTS = ["web.tests"]
+
+ADMIN_INTERFACE_THEME = 'boostrap'
+ADMIN_INTERFACE_LANGUAGE = 'en'

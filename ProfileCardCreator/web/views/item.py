@@ -6,28 +6,30 @@ from django.views.generic.edit import CreateView
 
 from ProfileCardCreator.web.forms.item import ItemForm
 from ProfileCardCreator.web.models import Item
+from ProfileCardCreator.web.views.authorization import SuperuserRequiredMixin, StuffRequiredMixin, \
+    CustomLoginRequiredMixin
 
 
-class ItemListView(ListView):
+class ItemListView(CustomLoginRequiredMixin, ListView):
     model = Item
     template_name = 'item/item-list.html'
     context_object_name = 'items'
 
 
-class ItemDetailView(DetailView):
+class ItemDetailView(CustomLoginRequiredMixin, DetailView):
     model = Item
     template_name = 'item/item-details.html'
     context_object_name = 'item'
 
 
-class ItemCreateView(CreateView):
+class ItemCreateView(StuffRequiredMixin, CreateView):
     model = Item
     form_class = ItemForm
     template_name = 'item/item-create.html'
     success_url = reverse_lazy('all items')
 
 
-class ItemDeleteView(View):
+class ItemDeleteView(SuperuserRequiredMixin, View):
     def get(self, request, pk):
         item = get_object_or_404(Item, pk=pk)
         item.delete()

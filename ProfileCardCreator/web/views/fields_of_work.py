@@ -6,22 +6,24 @@ from django.views.generic import ListView, CreateView
 import asyncio
 from ProfileCardCreator.web.forms import FieldOfWorkForm
 from ProfileCardCreator.web.models import FieldOfWork
+from ProfileCardCreator.web.views.authorization import CustomLoginRequiredMixin, StuffRequiredMixin, \
+    SuperuserRequiredMixin
 
 
-class FieldOfWorkListView(ListView):
+class FieldOfWorkListView( CustomLoginRequiredMixin,ListView):
     model = FieldOfWork
     template_name = 'field-of-work/field-of-work-list.html'
     context_object_name = 'fields'
 
 
-class FieldOfWorkCreateView(CreateView):
+class FieldOfWorkCreateView(StuffRequiredMixin, CreateView):
     model = FieldOfWork
     form_class = FieldOfWorkForm
     template_name = 'field-of-work/field-of-work-create.html'
     success_url = reverse_lazy('all fields')
 
 
-class FieldOfWorkDeleteView(View):
+class FieldOfWorkDeleteView(SuperuserRequiredMixin, View):
     def get(self, request, pk):
         field = get_object_or_404(FieldOfWork, pk=pk)
         field.delete()
