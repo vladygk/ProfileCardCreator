@@ -10,6 +10,7 @@
                 <li>
                     <strong>Field of Work:</strong> {{ field.Name }}<br>
                     <strong>Category:</strong> {{ field.Category.Name }}
+                    <a class="btn btn-danger btn-xxl d-block " href="{% url 'delete field' pk=field.pk %}">Delete</a>
                 </li>
             {% endfor %}
         {% else %}

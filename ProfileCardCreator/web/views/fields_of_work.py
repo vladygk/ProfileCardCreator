@@ -1,6 +1,9 @@
+from asgiref.sync import sync_to_async, async_to_sync
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, CreateView
-
+import asyncio
 from ProfileCardCreator.web.forms import FieldOfWorkForm
 from ProfileCardCreator.web.models import FieldOfWork
 
@@ -18,3 +21,8 @@ class FieldOfWorkCreateView(CreateView):
     success_url = reverse_lazy('all fields')
 
 
+class FieldOfWorkDeleteView(View):
+    def get(self, request, pk):
+        field = get_object_or_404(FieldOfWork, pk=pk)
+        field.delete()
+        return redirect('all fields')

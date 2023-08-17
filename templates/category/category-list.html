@@ -7,7 +7,11 @@
   <ul>
   {% if categories %}
     {% for category in categories %}
-      <li><h1>{{ category.Name }}</h1></li>
+      <li>
+          <h1>{{ category.Name }}</h1>
+          <a class="btn btn-danger btn-xxl d-block mx-auto mb-4"  href="{% url 'delete category' pk=category.pk %}">Delete</a>
+
+      </li>
     {% endfor %}
   {% else %}
        <h2>No categories in the system at the moment.</h2>

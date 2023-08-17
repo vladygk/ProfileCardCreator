@@ -1,12 +1,11 @@
 from django.urls import path
 
-from ProfileCardCreator.web.views import IndexView, RegisterView, LoginView\
-    , LogoutView, TasksListView, CreateTaskView\
-    , CategoryListView, CategoryCreateView\
-    , FieldOfWorkCreateView, FieldOfWorkListView\
-    , SubtaskCreateView, SubtaskListView\
-    , ItemCreateView, ItemListView, ItemDetailView
-
+from ProfileCardCreator.web.views import IndexView, RegisterView, LoginView \
+    , LogoutView, TasksListView, CreateTaskView \
+    , CategoryListView, CategoryCreateView \
+    , FieldOfWorkCreateView, FieldOfWorkListView \
+    , SubtaskCreateView, SubtaskListView \
+    , ItemCreateView, ItemListView, ItemDetailView, CategoryDeleteView, FieldOfWorkDeleteView
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
@@ -16,8 +15,10 @@ urlpatterns = [
     path("tasks/", TasksListView.as_view(), name="all tasks"),
     path("create-task/", CreateTaskView.as_view(), name="create task"),
     path("categories/", CategoryListView.as_view(), name="all categories"),
+    path("categories/<int:pk>", CategoryDeleteView.as_view(), name="delete category"),
     path("create-category/", CategoryCreateView.as_view(), name="create category"),
     path("fields/", FieldOfWorkListView.as_view(), name="all fields"),
+    path("fields/<int:pk>", FieldOfWorkDeleteView.as_view(), name="delete field"),
     path("create-field/", FieldOfWorkCreateView.as_view(), name="create field"),
     path("subtasks/", SubtaskListView.as_view(), name="all subtasks"),
     path("create-subtask/", SubtaskCreateView.as_view(), name="create subtask"),

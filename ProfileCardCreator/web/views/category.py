@@ -1,4 +1,6 @@
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic.edit import CreateView
 
 from ProfileCardCreator.web.forms import CategoryForm
@@ -18,3 +20,10 @@ class CategoryCreateView(CreateView):
     form_class = CategoryForm
     template_name = 'category/category-create.html'
     success_url = reverse_lazy('all categories')
+
+
+class CategoryDeleteView(View):
+    def get(self, request, pk):
+        category = get_object_or_404(Category, pk=pk)
+        category.delete()
+        return redirect('all categories')
