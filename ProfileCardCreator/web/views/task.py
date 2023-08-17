@@ -43,7 +43,7 @@ class TaskMarkAsDoneView(StuffRequiredMixin, View):
         return redirect('all tasks')
 
 
-class TodoTaskUpdateView(UpdateView):
+class TodoTaskUpdateView(StuffRequiredMixin, UpdateView):
     model = TodoTask
     fields = ['Title', 'Description', 'Deadline', 'IsCompleted', 'FieldOfWork', 'Assignee']
     template_name = 'todo-task/task-edit.html'

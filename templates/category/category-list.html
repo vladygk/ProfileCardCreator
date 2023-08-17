@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
-
+{% load custom_filters %}
 {% block main %}
-  <h1 class="text-center">Categories</h1>
-  <a class="btn btn-warning btn-xxl d-block mx-auto mb-4" href="{% url 'create category' %}">Create New Category</a>
+    <h1 class="text-center">Categories</h1>
+    {% if request.user|user_belongs_to_group:'Stuff_group' %}
+        <a class="btn btn-warning btn-xxl d-block mx-auto mb-4" href="{% url 'create category' %}">Create New
+            Category</a>
+    {% endif %}
+    <ul>
+        {% if categories %}
+            {% for category in categories %}
+                <li>
+                    <h1>{{ category.Name }}</h1>
+                     {% if request.user|user_belongs_to_group:'Admin_group' %}
+                    <a class="btn btn-danger btn-xxl d-block mx-auto mb-4"
+                       href="{% url 'delete category' pk=category.pk %}">Delete</a>
+                    {% endif %}
 
-  <ul>
-  {% if categories %}
-    {% for category in categories %}
-      <li>
-          <h1>{{ category.Name }}</h1>
-          <a class="btn btn-danger btn-xxl d-block mx-auto mb-4"  href="{% url 'delete category' pk=category.pk %}">Delete</a>
-
-      </li>
-    {% endfor %}
-  {% else %}
-       <h2>No categories in the system at the moment.</h2>
-  {% endif %}
-  </ul>
+                </li>
+            {% endfor %}
+        {% else %}
+            <h2>No categories in the system at the moment.</h2>
+        {% endif %}
+    </ul>
 {% endblock %}

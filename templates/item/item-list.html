@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block main %}
     <h1 class="text-center">Items List</h1>
+     {% if request.user|user_belongs_to_group:'Stuff_group' %}
     <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create item' %}">Create new Item</a>
-
+{% endif %}
     <ul>
         {% if items %}
             {% for item in items %}

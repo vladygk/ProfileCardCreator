@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block main %}
     <h1 class="text-center">Field of Work List</h1>
-    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create field' %}">Create new Field of Work</a>
-
+    {% if request.user|user_belongs_to_group:'Stuff_group' %}
+        <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create field' %}">Create new Field of Work</a>
+    {% endif %}
     <ul>
         {% if fields %}
             {% for field in fields %}
                 <li>
                     <strong>Field of Work:</strong> {{ field.Name }}<br>
                     <strong>Category:</strong> {{ field.Category.Name }}
-                    <a class="btn btn-danger btn-xxl d-block " href="{% url 'delete field' pk=field.pk %}">Delete</a>
+                    {% if request.user|user_belongs_to_group:'Admin_group' %}
+                        <a class="btn btn-danger btn-xxl d-block "
+                           href="{% url 'delete field' pk=field.pk %}">Delete</a>
+                    {% endif %}
                 </li>
             {% endfor %}
         {% else %}

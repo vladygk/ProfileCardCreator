@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block main %}
   <h1 class="text-center">Todo Tasks</h1>
+     {% if request.user|user_belongs_to_group:'Stuff_group' %}
     <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create task' %}">Create new Todo task</a>
-
+    {% endif %}
   <ul>
   {% if tasks %}
     {% for task in tasks %}

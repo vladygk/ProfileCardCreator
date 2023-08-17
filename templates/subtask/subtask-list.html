@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
-
+{% load custom_filters %}
 {% block main %}
     <h1 class="text-center">Subtask List</h1>
+     {% if request.user|user_belongs_to_group:'Stuff_group' %}
     <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create subtask' %}">Create new Subtask</a>
-
+    {% endif %}
     <ul>
         {% if subtasks %}
             {% for subtask in subtasks %}
                 <li>
                     <strong>Subtask Title:</strong> {{ subtask.Title }}<br>
                     <strong>Todo Task:</strong> {{ subtask.TodoTask.Title }}
+                     {% if request.user|user_belongs_to_group:'Admin_group' %}
                 <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete subtask' pk=subtask.pk %}">Delete</a>
+                {% endif %}
                 </li>
             {% endfor %}
         {% else %}
