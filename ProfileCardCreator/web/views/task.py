@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, CreateView
 
 from ProfileCardCreator.web.forms.task import TodoTaskForm
@@ -20,4 +22,20 @@ class CreateTaskView(CreateView, LoginRequiredMixin):
 
     def form_valid(self, form):
         form.instance.Creator = self.request.user
+        form.instance.IsCompleted= False
         return super().form_valid(form)
+
+
+class TaskDeleteView(View):
+    def get(self, request, pk):
+        task = get_object_or_404(TodoTask, pk=pk)
+        task.delete()
+        return redirect('all tasks')
+
+
+class TaskMarkAsDoneView(View):
+    def get(self,request,pk):
+        task = TodoTask.objects.get(pk=pk)
+        task.IsCompleted = True
+        task.save()
+        return redirect('all tasks')

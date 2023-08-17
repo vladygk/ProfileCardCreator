@@ -10,6 +10,7 @@
                 <li>
                     <strong>Subtask Title:</strong> {{ subtask.Title }}<br>
                     <strong>Todo Task:</strong> {{ subtask.TodoTask.Title }}
+                <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete subtask' pk=subtask.pk %}">Delete</a>
                 </li>
             {% endfor %}
         {% else %}

@@ -1,12 +1,18 @@
 <div class="card mb-3">
     <div class="card-header">
         <h5 class="card-title">{{ task.Title }}</h5>
+        {% if task.IsCompleted %}
+        <h6 class="card-title">Completed: Yes</h6>
+        {% else %}
+        <h6 class="card-title">Completed: No</h6>
+        {% endif %}
     </div>
     <div class="card-body">
         <p class="card-text">{{ task.Description }}</p>
         <p class="card-text"><strong>Deadline:</strong> {{ task.Deadline }}</p>
         <p class="card-text"><strong>Field of Work:</strong> {{ task.FieldOfWork }}</p>
         <p class="card-text"><strong>Creator:</strong> {{ task.Creator }}</p>
+       <p class="card-text"><strong>Assignee:</strong> {{ task.Assignee }}</p>
         {% if task.subtask_set.all %}
         <p><strong>Subtasks:</strong></p>
        <ul>
@@ -27,5 +33,9 @@
             {% endfor %}
         </ul>
     {% endif %}
+    {% if not task.IsCompleted %}
+    <a class="btn btn-info btn-xxl d-block mx-auto" href="{% url 'complete task' pk=task.pk %}">Complete</a>
+    {% endif %}
+    <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete task' pk=task.pk %}">Delete</a>
     </div>
 </div>

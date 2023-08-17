@@ -35,6 +35,12 @@
                         {{ form.FieldOfWork }}
                     </div>
                 </div>
+                 <div class="form-group col-md-6 mb-5">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <label for="{{ form.Assignee.id_for_label }}" class="font-weight-bold">Assignee:</label>
+                        {{ form.Assignee }}
+                    </div>
+                </div>
 
 
                 <button class="btn btn-success btn-block btn-xxl" type="submit">Create Task</button>

@@ -1,4 +1,6 @@
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from ProfileCardCreator.web.forms.subtask import SubtaskForm
@@ -16,3 +18,10 @@ class SubtaskCreateView(CreateView):
     form_class = SubtaskForm
     template_name = 'subtask/subtask-create.html'
     success_url = reverse_lazy('all subtasks')
+
+
+class SubtaskDeleteView(View):
+    def get(self, request, pk):
+        subtask = get_object_or_404(Subtask, pk=pk)
+        subtask.delete()
+        return redirect('all subtasks')
