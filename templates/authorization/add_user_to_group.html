@@ -9,29 +9,33 @@
                 {% if error_message %}
                     <div class="alert alert-danger">{{ error_message }}</div>
                 {% endif %}
-                <div class="form-row d-flex flex-column align-items-center justify-content-center">
-                    <div class="form-group col-md-6 mb-5">
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-                            <label for="user_id" class="font-weight-bold">Select User:</label>
-                            <select name="user_id" class="form-control">
+                <div class="form-row d-flex flex-column align-items-center justify-content-center  w-100">
+                    <div class="form-group  col-md-6 mb-5  w-100">
+                        <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                        <div class="d-flex  w-100"><label for="user_id" class="font-weight-bold w-75">Select User:</label>
+                            <select name="user_id" class="form-control w-100">
                                 {% for user in users %}
                                     <option value="{{ user.id }}">{{ user.username }}</option>
                                 {% endfor %}
-                            </select>
+                            </select></div>
+
                         </div>
                     </div>
-                    <div class="form-group col-md-6 mb-5">
+                    <div class="form-group col-md-6 mb-5 w-100">
                         <div class="d-flex flex-column justify-content-center align-items-center">
-                            <label for="group_id" class="font-weight-bold">Select Group:</label>
+                        <div class="d-flex w-100">
+                            <label for="group_id" class="font-weight-bold w-75">Select Group:</label>
                             <select name="group_id" class="form-control">
                                 {% for group in groups %}
                                     <option value="{{ group.id }}">{{ group.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
+
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-success btn-block btn-xxl" type="submit">Add User to Group</button>
+                <button class="btn btn-success btn-block btn-xxl text-primary" type="submit">Add User to Group</button>
             </div>
         </form>
     </div>

@@ -2,24 +2,27 @@
 {% load custom_filters %}
 
 {% block main %}
-    <h1 class="text-center">Field of Work List</h1>
+    <div class="  d-flex flex-column " style="height: 90vh">
+    <h1 class="text-center mt-5">Field of Work List</h1>
     {% if request.user|user_belongs_to_group:'Stuff_group' %}
-        <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create field' %}">Create new Field of Work</a>
+        <a class="btn btn-warning btn-xxl d-block mx-auto mt-1" href="{% url 'create field' %}">Create new Field of Work</a>
     {% endif %}
-    <ul>
+    <div class="d-flex flex-row align-items-start justify-content-evenly flex-wrap" style="height: 70vh">
         {% if fields %}
             {% for field in fields %}
-                <li>
-                    <strong>Field of Work:</strong> {{ field.Name }}<br>
-                    <strong>Category:</strong> {{ field.Category.Name }}
+                <div class="border border-2 border-info m-5 rounded-5 d-flex flex-column justify-content-center align-items-center p-3" style="width: 20vw">
+                    <h4 class="text-center">Field of Work:> {{ field.Name }}</h4>
+                    <h4 class="text-center text-success">Category:{{ field.Category.Name }}</h4>
                     {% if request.user|user_belongs_to_group:'Admin_group' %}
                         <a class="btn btn-danger btn-xxl d-block "
+                           style="width: 6vw"
                            href="{% url 'delete field' pk=field.pk %}">Delete</a>
                     {% endif %}
-                </li>
+                </div>
             {% endfor %}
         {% else %}
             <h2>No fields of work in the system at the moment.</h2>
         {% endif %}
-    </ul>
+    </div>
+    </div>
 {% endblock %}

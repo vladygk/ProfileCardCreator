@@ -2,17 +2,19 @@
 {% load custom_filters %}
 
 {% block main %}
-  <h1 class="text-center">Todo Tasks</h1>
-     {% if request.user|user_belongs_to_group:'Stuff_group' %}
-    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create task' %}">Create new Todo task</a>
-    {% endif %}
-  <ul>
-  {% if tasks %}
-    {% for task in tasks %}
-     {% include 'todo-task/task-partial.html' %}
-    {% endfor %}
-  {% else %}
-      <h2>No tasks in the system at the moment. All work is done!</h2>
-{% endif %}
-  </ul>
+    <div class="d-flex flex-column" style="height: 90vh">
+        <h1 class="text-center mt-5">Todo Tasks</h1>
+        {% if request.user|user_belongs_to_group:'Stuff_group' %}
+            <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create task' %}">Create new Todo task</a>
+        {% endif %}
+        <div class="d-flex flex-row align-items-start justify-content-evenly flex-wrap mt-4" style="height: 70vh">
+            {% if tasks %}
+                {% for task in tasks %}
+                    {% include 'todo-task/task-partial.html' %}
+                {% endfor %}
+            {% else %}
+                <h2>No tasks in the system at the moment. All work is done!</h2>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

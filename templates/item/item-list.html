@@ -2,11 +2,12 @@
 {% load custom_filters %}
 
 {% block main %}
-    <h1 class="text-center">Items List</h1>
+       <div class="  d-flex flex-column " style="height: 90vh">
+    <h1 class="text-center mt-5">Items List</h1>
      {% if request.user|user_belongs_to_group:'Stuff_group' %}
-    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create item' %}">Create new Item</a>
+    <a class="btn btn-warning btn-xxl d-block mx-auto mt-1" href="{% url 'create item' %}">Create new Item</a>
 {% endif %}
-    <ul>
+    <div class="d-flex flex-row align-items-start justify-content-evenly flex-wrap mt-4" style="height: 70vh">
         {% if items %}
             {% for item in items %}
                 {% include 'item/item-partial.html' %}
@@ -14,5 +15,6 @@
         {% else %}
             <h2>No items in the system at the moment.</h2>
         {% endif %}
-    </ul>
+    </div>
+    </div>
 {% endblock %}

@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% load custom_filters %}
 {% block main %}
-    <h1 class="text-center">Subtask List</h1>
+     <div class="  d-flex flex-column " style="height: 90vh">
+    <h1 class="text-center mt-5">Subtask List</h1>
      {% if request.user|user_belongs_to_group:'Stuff_group' %}
-    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create subtask' %}">Create new Subtask</a>
+    <a class="btn btn-warning btn-xxl d-block mx-auto mt-1" href="{% url 'create subtask' %}">Create new Subtask</a>
     {% endif %}
-    <ul>
+    <div class="d-flex flex-column align-items-start ps-5 justify-content-evenly flex-wrap" style="height: 70vh">
         {% if subtasks %}
             {% for subtask in subtasks %}
-                <li>
+                <div>
                     <strong>Subtask Title:</strong> {{ subtask.Title }}<br>
                     <strong>Todo Task:</strong> {{ subtask.TodoTask.Title }}
                      {% if request.user|user_belongs_to_group:'Admin_group' %}
                 <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete subtask' pk=subtask.pk %}">Delete</a>
                 {% endif %}
-                </li>
+                </div>
             {% endfor %}
         {% else %}
             <h2>No subtasks in the system at the moment.</h2>
         {% endif %}
-    </ul>
+    </div>
+    </div>
 {% endblock %}

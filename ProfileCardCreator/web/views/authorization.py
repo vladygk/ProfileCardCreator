@@ -45,7 +45,7 @@ class AddUserToGroupView(SuperuserRequiredMixin, View):
                 raise ValueError
             user.groups.add(group)
 
-            return redirect('index')
+            return redirect('add group')
         except (User.DoesNotExist, Group.DoesNotExist, ValueError):
             error_message = 'Group already added to this user'
             groups = Group.objects.all()
@@ -74,7 +74,7 @@ class RemoveUserToGroupView(SuperuserRequiredMixin, View):
                 raise ValueError
             user.groups.remove(group)
 
-            return redirect('index')
+            return redirect('remove group')
         except (User.DoesNotExist, Group.DoesNotExist, ValueError):
             error_message = 'User isn\'t in the specified group'
             groups = Group.objects.all()

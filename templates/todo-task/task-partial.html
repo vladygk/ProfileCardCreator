@@ -1,12 +1,12 @@
 {% load custom_filters %}
 
-<div class="card mb-3">
-    <div class="card-header">
+<div class="card mb-3  border-success" style="width: 18vw">
+    <div class="card-header border-success">
         <h5 class="card-title">{{ task.Title }}</h5>
         {% if task.IsCompleted %}
-        <h6 class="card-title">Completed: Yes</h6>
+            <h6 class="card-title">Completed: Yes</h6>
         {% else %}
-        <h6 class="card-title">Completed: No</h6>
+            <h6 class="card-title">Completed: No</h6>
         {% endif %}
     </div>
     <div class="card-body">
@@ -14,35 +14,41 @@
         <p class="card-text"><strong>Deadline:</strong> {{ task.Deadline }}</p>
         <p class="card-text"><strong>Field of Work:</strong> {{ task.FieldOfWork }}</p>
         <p class="card-text"><strong>Creator:</strong> {{ task.Creator }}</p>
-       <p class="card-text"><strong>Assignee:</strong> {{ task.Assignee }}</p>
+        <p class="card-text"><strong>Assignee:</strong> {{ task.Assignee }}</p>
         {% if task.subtask_set.all %}
-        <p><strong>Subtasks:</strong></p>
-       <ul>
-            {% for subtask in task.subtask_set.all %}
-                <li>
-                     {{ subtask.Title }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-     {% if task.item_set.all %}
-        <p><strong>Items:</strong></p>
-       <ul>
-            {% for item in task.item_set.all %}
-                <li>
-                    <a href="{% url 'details item' pk=item.pk %}" class="btn btn-danger btn-xxl d-block mx-auto" > {{ item.Name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {% if not task.IsCompleted and request.user|user_belongs_to_group:'Stuff_group'  %}
-    <a class="btn btn-info btn-xxl d-block mx-auto" href="{% url 'complete task' pk=task.pk %}">Complete</a>
-    {% endif %}
-     {% if request.user|user_belongs_to_group:'Stuff_group' %}
-    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'edit task' pk=task.pk %}">Edit</a>
-    {% endif %}
-     {% if request.user|user_belongs_to_group:'Admin_group' %}
-    <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete task' pk=task.pk %}">Delete</a>
-    {% endif %}
+            <p><strong>Subtasks:</strong></p>
+            <ul>
+                {% for subtask in task.subtask_set.all %}
+                    <li>
+                        {{ subtask.Title }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if task.item_set.all %}
+            <p><strong>Items:</strong></p>
+            <div class="d-flex flex-wrap">
+                {% for item in task.item_set.all %}
+                    <div>
+                        <a href="{% url 'details item' pk=item.pk %}"
+                           style="width: 4vw"
+                           class="btn btn-success text-primary btn-xxl d-block mx-auto"> {{ item.Name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if not task.IsCompleted and request.user|user_belongs_to_group:'Stuff_group' %}
+            <a class="btn btn-info btn-xxl d-block mx-auto mt-2" href="{% url 'complete task' pk=task.pk %}"
+               style="width: 6vw">Complete</a>
+        {% endif %}
+        {% if request.user|user_belongs_to_group:'Stuff_group' %}
+            <a class="btn btn-warning btn-xxl d-block mx-auto mt-2" href="{% url 'edit task' pk=task.pk %}"
+               style="width: 6vw">Edit</a>
+        {% endif %}
+        {% if request.user|user_belongs_to_group:'Admin_group' %}
+            <a class="btn btn-danger btn-xxl d-block mx-auto mt-2" href="{% url 'delete task' pk=task.pk %}"
+               style="width: 6vw">Delete</a>
+        {% endif %}
     </div>
 </div>

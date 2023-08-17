@@ -1,14 +1,14 @@
 {% load custom_filters %}
 
-<div class="card mb-3" style="width: 30vw">
-    <div class="card-header">
+<div class="card mb-3 border-secondary" style="width: 30vw">
+    <div class="card-header border-secondary">
         <h5 class="card-title text-center">{{ item.Name }}</h5>
     </div>
     <div class="card-body d-flex flex-column justify-content-center align-items-center">
         <p class="card-text"> <img width="300px" src="{{ item.ImageUrl }}" alt="item-image"/></p>
-        <a class="btn btn-success btn-xxl d-block mx-auto" href="{% url 'details item' pk=item.pk %}">Details</a>
+        <a class="btn btn-success btn-xxl d-block mx-auto mt-3 text-primary" href="{% url 'details item' pk=item.pk %}">Details</a>
          {% if request.user|user_belongs_to_group:'Admin_group' %}
-        <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete item' pk=item.pk %}">Delete</a>
+        <a class="btn btn-danger btn-xxl d-block mx-auto mt-3" href="{% url 'delete item' pk=item.pk %}">Delete</a>
         {% endif %}
     </div>
 </div>
