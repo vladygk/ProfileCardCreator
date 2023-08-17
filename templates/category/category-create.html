@@ -11,6 +11,9 @@
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <label for="{{ form.Name.id_for_label }}" class="font-weight-bold">Category Name:</label>
                             {{ form.Name }}
+                            {% if form.Name.errors %}
+                                <div class="text-danger">{{ form.Name.errors }}</div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

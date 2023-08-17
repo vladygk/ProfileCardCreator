@@ -2,8 +2,8 @@
 
 {% block main %}
     <div class="container w-25 d-flex flex-column mt-5">
-        <h1 class="text-center">Create Todo Task</h1>
-        <form action="{% url 'create task' %}" method="post" class="mt-4 border border-secondary p-4">
+        <h1 class="text-center">Edit Todo Task</h1>
+        <form action="{% url 'edit task' task_pk %}" method="post" class="mt-4 border border-secondary p-4">
             <div class="p-4 d-flex flex-column justify-content-center align-items-center border border-secondary rounded-5 border-2">
                 {% csrf_token %}
                 <div class="form-row d-flex flex-column align-items-center justify-content-center">
@@ -18,7 +18,8 @@
                     </div>
                     <div class="form-group col-md-6 mb-5">
                         <div class="d-flex flex-column justify-content-center align-items-center">
-                            <label for="{{ form.Description.id_for_label }}" class="font-weight-bold">Description:</label>
+                            <label for="{{ form.Description.id_for_label }}"
+                                   class="font-weight-bold">Description:</label>
                             {{ form.Description }}
                             {% if form.Description.errors %}
                                 <div class="text-danger">{{ form.Description.errors }}</div>
@@ -55,7 +56,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-success btn-block btn-xxl" type="submit">Create Task</button>
+                <button class="btn btn-warning btn-block btn-xxl" type="submit">Save changes</button>
             </div>
         </form>
     </div>

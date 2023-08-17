@@ -36,6 +36,8 @@
     {% if not task.IsCompleted %}
     <a class="btn btn-info btn-xxl d-block mx-auto" href="{% url 'complete task' pk=task.pk %}">Complete</a>
     {% endif %}
+    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'edit task' pk=task.pk %}">Edit</a>
     <a class="btn btn-danger btn-xxl d-block mx-auto" href="{% url 'delete task' pk=task.pk %}">Delete</a>
+
     </div>
 </div>

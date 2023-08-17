@@ -11,12 +11,18 @@
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <label for="{{ form.Name.id_for_label }}" class="font-weight-bold">Name:</label>
                             {{ form.Name }}
+                            {% if form.Name.errors %}
+                                <div class="text-danger">{{ form.Name.errors }}</div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group col-md-6 mb-5">
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <label for="{{ form.Price.id_for_label }}" class="font-weight-bold">Price:</label>
                             {{ form.Price }}
+                            {% if form.Price.errors %}
+                                <div class="text-danger">{{ form.Price.errors }}</div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -24,12 +30,18 @@
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <label for="{{ form.ImageUrl.id_for_label }}" class="font-weight-bold">Image URL:</label>
                         {{ form.ImageUrl }}
+                        {% if form.ImageUrl.errors %}
+                            <div class="text-danger">{{ form.ImageUrl.errors }}</div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="form-group col-md-6 mb-5">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <label for="{{ form.TodoTask.id_for_label }}" class="font-weight-bold">Todo Task:</label>
                         {{ form.TodoTask }}
+                        {% if form.TodoTask.errors %}
+                            <div class="text-danger">{{ form.TodoTask.errors }}</div>
+                        {% endif %}
                     </div>
                 </div>
                 <button class="btn btn-success btn-block btn-xxl" type="submit">Create Item</button>
