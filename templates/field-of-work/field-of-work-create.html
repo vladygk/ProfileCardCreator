@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="container w-25 d-flex flex-column mt-5">
+        <h1 class="text-center">Create Field of Work</h1>
+        <form action="{% url 'create field' %}" method="post" class="mt-4 border border-secondary p-4">
+            <div class="p-4 d-flex flex-column justify-content-center align-items-center border border-secondary rounded-5 border-2">
+                {% csrf_token %}
+                <div class="form-row d-flex flex-column align-items-center justify-content-center">
+                    <div class="form-group col-md-6 mb-5">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <label for="{{ form.Name.id_for_label }}" class="font-weight-bold">Name:</label>
+                            {{ form.Name }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 mb-5">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <label for="{{ form.Category.id_for_label }}"
+                                   class="font-weight-bold">Category:</label>
+                            {{ form.Category }}
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-success btn-block btn-xxl" type="submit">Create Field of Work</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

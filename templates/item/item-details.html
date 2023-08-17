@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1 class="text-center">Item Details</h1>
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5 class="card-title">{{ item.Name }}</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Image URL:</strong> <img src="{{ item.ImageUrl }}" alt="item-image"/></p>
+            <p class="card-text"><strong>Price:</strong> ${{ item.Price }}</p>
+            <p class="card-text"><strong>Todo Task:</strong> {{ item.TodoTask.Title }}</p>
+        </div>
+    </div>
+    <a class="btn btn-primary" href="{% url 'all items' %}">Back to List</a>
+{% endblock %}

@@ -1,0 +1,9 @@
+<div class="card mb-3" style="width: 30vw">
+    <div class="card-header">
+        <h5 class="card-title text-center">{{ item.Name }}</h5>
+    </div>
+    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+        <p class="card-text"> <img width="300px" src="{{ item.ImageUrl }}" alt="item-image"/></p>
+        <a class="btn btn-success btn-xxl d-block mx-auto" href="{% url 'details item' pk=item.pk %}">Details</a>
+    </div>
+</div>

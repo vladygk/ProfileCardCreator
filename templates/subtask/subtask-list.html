@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1 class="text-center">Subtask List</h1>
+    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create subtask' %}">Create new Subtask</a>
+
+    <ul>
+        {% if subtasks %}
+            {% for subtask in subtasks %}
+                <li>
+                    <strong>Subtask Title:</strong> {{ subtask.Title }}<br>
+                    <strong>Todo Task:</strong> {{ subtask.TodoTask.Title }}
+                </li>
+            {% endfor %}
+        {% else %}
+            <h2>No subtasks in the system at the moment.</h2>
+        {% endif %}
+    </ul>
+{% endblock %}

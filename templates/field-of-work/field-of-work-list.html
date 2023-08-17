@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1 class="text-center">Field of Work List</h1>
+    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create field' %}">Create new Field of Work</a>
+
+    <ul>
+        {% if fields %}
+            {% for field in fields %}
+                <li>
+                    <strong>Field of Work:</strong> {{ field.Name }}<br>
+                    <strong>Category:</strong> {{ field.Category.Name }}
+                </li>
+            {% endfor %}
+        {% else %}
+            <h2>No fields of work in the system at the moment.</h2>
+        {% endif %}
+    </ul>
+{% endblock %}

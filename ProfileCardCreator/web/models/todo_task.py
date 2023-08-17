@@ -9,7 +9,11 @@ class TodoTask(models.Model):
                              validators=[MaxLengthValidator(30), MinLengthValidator(2),
                                          RegexValidator(r'^[A-Za-z]+$',
                                                         message="Todo task name should contain only letters!")])
-    Description = models.TextField(null=False)
+    Description = models.CharField(null=False, max_length=30,
+                                   validators=[MaxLengthValidator(30), MinLengthValidator(2), ])
     Deadline = models.DateField(null=False)
     FieldOfWork = models.ForeignKey(FieldOfWork, on_delete=models.CASCADE)
     Creator = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.Title

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1 class="text-center">Items List</h1>
+    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create item' %}">Create new Item</a>
+
+    <ul>
+        {% if items %}
+            {% for item in items %}
+                {% include 'item/item-partial.html' %}
+            {% endfor %}
+        {% else %}
+            <h2>No items in the system at the moment.</h2>
+        {% endif %}
+    </ul>
+{% endblock %}

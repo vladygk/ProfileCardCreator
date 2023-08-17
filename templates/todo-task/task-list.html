@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <h1 class="text-center">Todo Tasks</h1>
+    <a class="btn btn-warning btn-xxl d-block mx-auto" href="{% url 'create task' %}">Create new Todo task</a>
+
+  <ul>
+  {% if tasks %}
+    {% for task in tasks %}
+     {% include 'todo-task/task-partial.html' %}
+    {% endfor %}
+  {% else %}
+      <h2>No tasks in the system at the moment. All work is done!</h2>
+{% endif %}
+  </ul>
+{% endblock %}

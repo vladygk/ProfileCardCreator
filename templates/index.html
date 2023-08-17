@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block main %}
-<h1 class="text-danger">Welcome to the ToDo app</h1>
+    <div class="flex flex-column align-items-center justify-content-center">
+        <h1 class="text-danger text-center">Welcome to the ToDo app</h1>
+   <div class="d-flex flex-row justify-content-center align-items-center justify-items-center"> <img class="w-59 h-25"  src="{% static 'images/home-page-image.jpg' %}" alt="home-image"/>
+
+   </div>
+    </div>
 {% endblock %}

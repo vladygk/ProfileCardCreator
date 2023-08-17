@@ -1,0 +1,31 @@
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="card-title">{{ task.Title }}</h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ task.Description }}</p>
+        <p class="card-text"><strong>Deadline:</strong> {{ task.Deadline }}</p>
+        <p class="card-text"><strong>Field of Work:</strong> {{ task.FieldOfWork }}</p>
+        <p class="card-text"><strong>Creator:</strong> {{ task.Creator }}</p>
+        {% if task.subtask_set.all %}
+        <p><strong>Subtasks:</strong></p>
+       <ul>
+            {% for subtask in task.subtask_set.all %}
+                <li>
+                     {{ subtask.Title }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+     {% if task.item_set.all %}
+        <p><strong>Items:</strong></p>
+       <ul>
+            {% for item in task.item_set.all %}
+                <li>
+                    <a href="{% url 'details item' pk=item.pk %}" class="btn btn-danger btn-xxl d-block mx-auto" > {{ item.Name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+</div>
