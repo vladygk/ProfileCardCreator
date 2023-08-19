@@ -1,6 +1,10 @@
 {% load custom_filters %}
 
+{% if task.IsCompleted %}
+<div class="card mb-3  border-success completed" style="width: 18vw">
+{% else %}
 <div class="card mb-3  border-success" style="width: 18vw">
+{% endif %}
     <div class="card-header border-success">
         <h5 class="card-title">{{ task.Title }}</h5>
         {% if task.IsCompleted %}
@@ -39,7 +43,8 @@
         {% endif %}
 
         {% if not task.IsCompleted and request.user|user_belongs_to_group:'Stuff_group' %}
-            <a class="btn btn-info btn-xxl d-block mx-auto mt-2" href="{% url 'complete task' pk=task.pk %}"
+            <a id="{{ task.pk }}" onclick="MarkAsCompleted()" class="btn btn-info btn-xxl d-block mx-auto mt-2"
+               href="{% url 'complete task' pk=task.pk %}"
                style="width: 6vw">Complete</a>
         {% endif %}
         {% if request.user|user_belongs_to_group:'Stuff_group' %}
@@ -52,3 +57,5 @@
         {% endif %}
     </div>
 </div>
+
+

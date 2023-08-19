@@ -14,6 +14,7 @@ class TasksListView(CustomLoginRequiredMixin, ListView):
     model = TodoTask
     template_name = "todo-task/task-list.html"
     context_object_name = "tasks"
+    ordering = ["-created_at"]
 
 
 class CreateTaskView(StuffRequiredMixin, CreateView):
@@ -51,12 +52,12 @@ class TodoTaskUpdateView(StuffRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['task_pk'] = self.kwargs['pk']
-        print(self.kwargs['pk'])
         return context
 
     def form_valid(self, form):
+
         form.instance.Creator = self.request.user
-        form.instance.IsCompleted = not self.object.IsCompleted
+        form.instance.IsCompleted = TodoTask.objects.get(pk=form.instance.pk).IsCompleted
         self.object.save()
 
         print(self.object)

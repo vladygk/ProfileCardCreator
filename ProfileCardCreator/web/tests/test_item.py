@@ -1,19 +1,21 @@
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 from ProfileCardCreator.web.forms.item import ItemForm
 from ProfileCardCreator.web.models import Category, FieldOfWork, TodoTask, Item
+from django.contrib.auth.models import User, Group
+
+from ProfileCardCreator.web.tests.instance_creator import CreateInstance
 
 
 class ItemViewsTestCase(TestCase):
     def setUp(self):
-        self.category = Category.objects.create(Name="TestCategory")
-        self.field_of_work = FieldOfWork.objects.create(Name="TestField", Category=self.category)
-        self.user = User.objects.create(username="testuser", password="testpassword")
-        self.todo_task = TodoTask.objects.create(
-            Title="TestTask", Description="Test Description", Deadline="2023-08-31", FieldOfWork=self.field_of_work
-            ,Creator=self.user
-        )
+        self.user = User.objects.create(username="test_user", password=make_password("testpassword"))
+        self.group = Group.objects.create(name='Stuff_group')
+        self.category = CreateInstance.creat_category()
+        self.field_of_work = CreateInstance.create_field_of_work()
+        self.todo_task = CreateInstance.create_task()
 
     def test_item_form_valid(self):
         form_data = {
@@ -26,6 +28,9 @@ class ItemViewsTestCase(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_item_create_view(self):
+        self.user.groups.add(self.group)
+        self.client.login(username='test_user', password='testpassword')
+
         response = self.client.post(
             reverse("create item"),
             {"Name": "NewItem", "Price": 10, "ImageUrl": "https://example.com", "TodoTask": self.todo_task.pk},

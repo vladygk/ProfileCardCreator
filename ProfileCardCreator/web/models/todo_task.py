@@ -16,6 +16,6 @@ class TodoTask(models.Model):
     FieldOfWork = models.ForeignKey(FieldOfWork, on_delete=models.CASCADE)
     Creator = models.ForeignKey(User, related_name='creator', on_delete=models.CASCADE)
     Assignee = models.ForeignKey(User, related_name='assignee', on_delete=models.CASCADE)
-
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     def __str__(self):
         return self.Title

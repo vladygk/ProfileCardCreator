@@ -72,5 +72,14 @@
 <footer class="mt-auto d-flex justify-content-center">
     Todo app corporation &copy; 2023. All right reserved.
 </footer>
+<script>
+    function MarkAsCompleted(event) {
+        const element = document.getElementById(Number(event.target.id)).parentElement.parentElement;
+        console.log("Target " +event.target.id);
+        element.classList.push("completed");
+
+    }
+
+</script>
 </body>
 </html>

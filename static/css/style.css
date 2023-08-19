@@ -5,3 +5,8 @@ body::-webkit-scrollbar{
 .item-container::-webkit-scrollbar{
     display: none;
   }
+
+.completed{
+    border-color: grey;
+    background-color: dimgrey;
+}
